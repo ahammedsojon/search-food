@@ -38,12 +38,13 @@ const displaySearchResult = meals => {
             div.classList.add('col');
             div.innerHTML = `
             <div class="col">
-                <div onclick="loadMealDetails(${meal.idMeal})" class="card">
+                <div class="card">
                     <img src="${meal.strMealThumb}" class="card - img - top" alt="">
                 <div class="card-body">
                         <h5 class="card-title">${meal.strMeal}</h5>
                         <p class="card-text">${meal.strInstructions.substr(0, 200)}
                         </p>
+                        <button onclick="loadMealDetails('${meal.idMeal}')" class="btn btn-outline-primary">Read more</button>
                     </div>
                 </div>
             </div>
@@ -54,7 +55,7 @@ const displaySearchResult = meals => {
     }
 }
 
-const loadMealDetails = async mealId => {
+const loadMealDetails = mealId => {
     spinner.classList.remove('d-none')
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
     fetch(url)
@@ -76,7 +77,7 @@ const displayMealDetails = meal => {
             <h5 class="card-title">${meal.strMeal}</h5>
             <p class="card-text">${meal.strInstructions}
             </p>
-            <a target="_blank" href="${meal.strYoutube}" class="btn btn-primary">Go to meal details</a>
+            <a target="_blank" href="${meal.strYoutube}" class="btn btn-outline-primary">make recipe</a>
         </div>
     </div>
     `;
